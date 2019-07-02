@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<template
+    format="1"
+    revision="1"
+    name="Model-View-Presenter module"
+    description="Generates new MVP module"
+    minBuildApi="14">
+    
+    <dependency name="android-support-v4" revision="8" />
+    
+    <category value="Other" />
+    
+    <parameter
+        id="moduleType"
+        name="Module type"
+        type="enum"
+        default="1"
+        help="Select module type what you need">
+        
+        <option id="1">Model-View-Presenter</option>
+<!--        <option id="2">View-Interactor-Presenter-Entity-Router</option>-->
+
+    </parameter>
+    
+    <parameter
+        id="includeBaseModule"
+        name="Generate base module"
+        type="boolean"
+        default="false"
+        help="Generate Base module. Select this option if you don\'t have base module and contracts" />
+        
+    <parameter
+        id="baseModulePackage"
+        name="Package name"
+        type="string"
+        constraints="package|nonempty"
+        default="com.mycompany.myapp"
+        help="Provide package name where your base module located if exists. It will be generate base module in this package if you select this option"/>
+        
+    <parameter
+        id="baseModulePrefix"
+        name="Base module prefix"
+        type="string"
+        constraints="nonempty|unique"
+        default="Base"
+        help="Prefix for base module names. For example: in name 'BaseContracts.kt' - prefix is 'Base'" />
+    
+    <parameter
+        id="viewType"
+        name="View is"
+        type="enum"
+        default="2"
+        help="Select view type">
+        
+<!--        <option id="1">Activity</option>-->
+        <option id="2">Fragment</option>
+        
+    </parameter>
+    
+    <parameter
+        id="moduleName"
+        name="Module name"
+        type="string"
+        constraints="nonempty|class|unique"
+        default="SignIn"
+        help="The name of module to generate" />
+        
+    <parameter
+        id="modulePackage"
+        name="Package name"
+        type="string"
+        constraints="package|nonempty"
+        default="com.mycompany.myapp" />
+        
+    <parameter
+        id="includeViewLayout"
+        name="Create layout XML?"
+        type="boolean"
+        default="true"
+        help="Generate a layout XML for the view?" />
+        
+    <parameter
+        id="viewLayoutName"
+        name="View layout name"
+        type="string"
+        visibility="includeViewLayout"
+        constraints="nonempty|layout|unique"
+        suggest="${classToResource(moduleName)}_view_layout"
+        help="The name of the layout to create" />
+    
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+    
+</template>
